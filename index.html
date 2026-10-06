@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURAX GT | Montañismo y Expediciones en Guatemala</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: League Spartan -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        aurax: {
+                            cyan: '#5CE1E6',
+                            neon: '#00D2FE',
+                            dark: '#070A0D',
+                            card: '#12181B',
+                            cardBorder: '#1F292E',
+                            white: '#FFFFFF'
+                        }
+                    },
+                    fontFamily: {
+                        spartan: ['"League Spartan"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'League Spartan', sans-serif;
+            background-color: #070A0D;
+            color: #FFFFFF;
+        }
+        .text-glow {
+            text-shadow: 0 0 15px rgba(0, 210, 254, 0.6);
+        }
+        .border-glow {
+            box-shadow: 0 0 20px rgba(0, 210, 254, 0.25);
+        }
+        .bg-glow {
+            background: radial-gradient(circle at center, rgba(0,210,254,0.12) 0%, transparent 70%);
+        }
+    </style>
+</head>
+<body class="bg-[#070A0D] text-white antialiased selection:bg-aurax-neon selection:text-black">
+
+    <!-- REPRODUCTOR AUDITIVO DE AMBIENTE (ESTILO CMI AUDITIVO) -->
+    <audio id="audio-ambiente" loop preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2515/2515-preview.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- NAVEGACIÓN PRINCIPAL -->
+    <nav class="fixed top-0 w-full z-50 bg-[#070A0D]/90 backdrop-blur-md border-b border-aurax-cardBorder">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- LOGO SVG OFICIAL -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <svg class="h-10 w-auto" viewBox="0 0 450 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10 120 L80 40 L130 90 L180 20 L260 120 Z" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M140 120 L210 30 L290 120 Z" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>
+                    <path d="M250 120 L310 50 L380 120 Z" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round"/>
+                    <path d="M80 40 L65 60 L80 55 L95 65 Z" fill="#FFFFFF"/>
+                    <path d="M180 20 L160 45 L180 40 L200 50 Z" fill="#FFFFFF"/>
+                    <text x="30" y="115" font-family="'League Spartan', sans-serif" font-weight="900" font-size="62" fill="#FFFFFF" letter-spacing="4">AURA</text>
+                    <path d="M230 45 C 245 75, 270 115, 305 135 M 295 55 C 275 80, 245 110, 215 130" stroke="#00D2FE" stroke-width="10" stroke-linecap="round" filter="drop-shadow(0px 0px 8px #00D2FE)"/>
+                    <text x="35" y="145" font-family="'League Spartan', sans-serif" font-weight="800" font-size="19" fill="#FFFFFF" letter-spacing="7">MONTAÑISMO GT</text>
+                </svg>
+            </a>
+
+            <!-- MENÚ PRINCIPAL -->
+            <div class="hidden lg:flex space-x-7 text-xs font-bold tracking-widest uppercase">
+                <a href="#identidad" class="hover:text-aurax-neon transition-colors">Identidad</a>
+                <a href="#pilares" class="hover:text-aurax-neon transition-colors">Puntos Clave</a>
+                <a href="#expediciones" class="hover:text-aurax-neon transition-colors">Expediciones</a>
+                <a href="#guardian" class="hover:text-aurax-neon transition-colors">Guardián</a>
+                <a href="#contacto" class="hover:text-aurax-neon transition-colors">Contacto</a>
+            </div>
+
+            <!-- BOTONES DE ACCIÓN & AUDIO -->
+            <div class="flex items-center gap-3">
+                <button onclick="toggleAudio()" id="btn-audio" class="p-2.5 rounded-full border border-aurax-cardBorder hover:border-aurax-neon text-gray-400 hover:text-aurax-neon transition-all" title="Audio de Ambiente de Montaña">
+                    <i data-lucide="volume-x" id="icon-audio" class="w-4 h-4"></i>
+                </button>
+                <a href="https://wa.me/50254342015?text=Hola%20fundador%20de%20AURAX%20GT,%20quiero%20informaci%C3%B3n%20sobre%20sus%20expediciones" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-aurax-neon text-aurax-neon font-bold text-xs tracking-widest hover:bg-aurax-neon hover:text-black transition-all shadow-lg hover:shadow-aurax-neon/30">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">HABLAR CON FUNDADOR</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. ENCABEZADO PRINCIPAL (HERO SECTION) -->
+    <section class="pt-32 pb-20 md:pt-44 md:pb-32 px-4 relative overflow-hidden border-b border-aurax-cardBorder">
+        <div class="absolute inset-0 bg-glow pointer-events-none"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-aurax-card border border-aurax-neon/40 text-aurax-neon text-xs font-bold tracking-widest mb-6">
+                <i data-lucide="compass" class="w-4 h-4"></i> CONQUISTANDO A GUATE DESDE LO ALTO
+            </div>
+
+            <!-- TÍTULO ÉPICO -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight uppercase mb-6 leading-none">
+                Conquista tu cumbre, <br>
+                <span class="text-aurax-neon text-glow">vive la montaña</span>
+            </h1>
+
+            <!-- SUBTÍTULO -->
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto font-normal leading-relaxed mb-8">
+                Desconéctate del ruido urbano y desafía los volcanes y senderos emblemáticos de Guatemala con expediciones organizadas bajo altos estándares de seguridad, disciplina y comunidad.
+            </p>
+
+            <!-- BOTÓN DE ACCIÓN DIRECTA -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="https://wa.me/50254342015?text=Hola,%20deseo%20hablar%20directamente%20con%20el%20fundador%20de%20AURAX%20GT%20para%20cotizar/reservar" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-aurax-neon text-black font-extrabold tracking-wider text-sm hover:bg-white transition-all shadow-lg shadow-aurax-neon/20">
+                    ¡HABLA CON EL FUNDADOR POR WHATSAPP!
+                </a>
+                <a href="#expediciones" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-white/20 hover:border-aurax-neon text-white font-extrabold tracking-wider text-sm hover:text-aurax-neon transition-all">
+                    EXPLORAR EXPEDICIONES
+                </a>
+            </div>
+
+            <p class="mt-4 text-xs text-gray-400 font-bold italic">
+                "Cuando la ciudad hace demasiado ruido... la montaña tiene la respuesta."
+            </p>
+        </div>
+    </section>
+
+    <!-- 1. GUÍA DE IDENTIDAD & MANUAL -->
+    <section id="identidad" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-xs font-bold tracking-[0.3em] text-aurax-neon uppercase mb-2">Identidad y Esencia</h2>
+            <h3 class="text-3xl md:text-5xl font-black uppercase">Paleta, Tipografía y Sensorial</h3>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- PALETA DE COLORES -->
+            <div class="bg-aurax-card border border-aurax-cardBorder p-8 rounded-2xl">
+                <h4 class="text-xl font-black uppercase mb-6 text-aurax-neon flex items-center gap-2">
+                    <i data-lucide="palette" class="w-5 h-5"></i> Colores Oficiales
+                </h4>
+                <div class="space-y-3 text-xs">
+                    <div class="flex justify-between items-center p-3 rounded-lg bg-black border border-aurax-cardBorder">
+                        <span class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-[#00D2FE]"></div> Cian Turquesa Neón</span>
+                        <span class="font-mono text-aurax-neon">#00D2FE / #5CE1E6</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 rounded-lg bg-black border border-aurax-cardBorder">
+                        <span class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-[#070A0D]"></div> Negro Nocturno</span>
+                        <span class="font-mono text-gray-400">#070A0D / #000000</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 rounded-lg bg-black border border-aurax-cardBorder">
+                        <span class="flex items-center gap-2"><div class="w-4 h-4 rounded bg-[#FFFFFF]"></div> Blanco Puro</span>
+                        <span class="font-mono text-gray-400">#FFFFFF</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUDITIVO Y TIPOGRAFÍA -->
+            <div class="bg-aurax-card border border-aurax-cardBorder p-8 rounded-2xl">
+                <h4 class="text-xl font-black uppercase mb-6 text-aurax-neon flex items-center gap-2">
+                    <i data-lucide="music" class="w-5 h-5"></i> Audio y Tipografía
+                </h4>
+                <div class="space-y-3 text-xs">
+                    <div class="p-3 rounded-lg bg-black border border-aurax-cardBorder">
+                        <span class="font-bold text-white block mb-1">Fuente Oficial: League Spartan</span>
+                        <p class="text-gray-400">Diseño geométrico de alta legibilidad para cumbres y títulos.</p>
+                    </div>
+                    <div class="p-3 rounded-lg bg-black border border-aurax-cardBorder">
+                        <span class="font-bold text-white block mb-1">Estilo Auditivo CMI:</span>
+                        <p class="text-gray-400">Género Indie-Outdoor, ambiental de cuerdas y viento de montaña.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IDENTIDAD SENSORIAL -->
+            <div class="bg-aurax-card border border-aurax-cardBorder p-8 rounded-2xl">
+                <h4 class="text-xl font-black uppercase mb-6 text-aurax-neon flex items-center gap-2">
+                    <i data-lucide="wind" class="w-5 h-5"></i> Aroma de Marca
+                </h4>
+                <div class="grid grid-cols-2 gap-3 text-center text-xs font-bold">
+                    <div class="p-3 rounded-lg bg-black border border-aurax-cardBorder">🌲 Pino</div>
+                    <div class="p-3 rounded-lg bg-black border border-aurax-cardBorder">🌿 Ciprés</div>
+                    <div class="p-3 rounded-lg bg-black border border-aurax-cardBorder">🍃 Eucalipto</div>
+                    <div class="p-3 rounded-lg bg-black border border-aurax-cardBorder">🪵 Cedro</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PUNTOS CLAVE DE LA EMPRESA (PILARES CMI) -->
+    <section id="pilares" class="py-20 px-4 bg-aurax-card border-y border-aurax-cardBorder">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-xs font-bold tracking-[0.3em] text-aurax-neon uppercase mb-2">Lo Más Importante</h2>
+                <h3 class="text-3xl md:text-5xl font-black uppercase">Nuestros 4 Pilares de Diferenciación</h3>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl bg-black border border-aurax-cardBorder hover:border-aurax-neon/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-aurax-neon/10 border border-aurax-neon/30 flex items-center justify-center text-aurax-neon mb-4">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-lg font-bold uppercase mb-2 text-white">1. Aventura Segura</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Planificación responsable, buenas prácticas y protocolos rigurosos para cuidar la integridad física de cada montañista.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-black border border-aurax-cardBorder hover:border-aurax-neon/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-aurax-neon/10 border border-aurax-neon/30 flex items-center justify-center text-aurax-neon mb-4">
+                        <i data-lucide="brain" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-lg font-bold uppercase mb-2 text-white">2. Salud Mental</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Desconexión del estrés urbano y laboral para combatir el burnout y renovar la claridad mental en la cumbre.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-black border border-aurax-cardBorder hover:border-aurax-neon/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-aurax-neon/10 border border-aurax-neon/30 flex items-center justify-center text-aurax-neon mb-4">
+                        <i data-lucide="tree-pine" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-lg font-bold uppercase mb-2 text-white">3. Respeto Ecológico</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Turismo responsable, sin greenwashing. Dejamos cada volcán y sendero mejor de como lo encontramos.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-black border border-aurax-cardBorder hover:border-aurax-neon/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-aurax-neon/10 border border-aurax-neon/30 flex items-center justify-center text-aurax-neon mb-4">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-lg font-bold uppercase mb-2 text-white">4. Compañerismo</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Comunidad itinerante y unida por el apoyo mutuo, la empatía y la pasión de superar juntos cada límite.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPEDICIONES DE LA COMUNIDAD -->
+    <section id="expediciones" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-xs font-bold tracking-[0.3em] text-aurax-neon uppercase mb-2">Cumbres Principales</h2>
+            <h3 class="text-3xl md:text-5xl font-black uppercase">Próximas Expediciones</h3>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-aurax-card border border-aurax-cardBorder rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <span class="text-aurax-neon text-xs font-bold uppercase tracking-wider">Nocturno</span>
+                    <h4 class="text-xl font-bold uppercase mt-1 mb-2">Santiaguito Nocturno</h4>
+                    <p class="text-gray-400 text-xs mb-4">Observación de actividad volcánica bajo las estrellas en el mirador.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-aurax-cardBorder pt-4">
+                    <span class="text-xl font-black text-white">Q270</span>
+                    <a href="https://wa.me/50254342015?text=Quiero%20reservar%20Santiaguito%20Nocturno" target="_blank" class="px-4 py-2 rounded-lg bg-aurax-neon text-black font-bold text-xs">RESERVAR</a>
+                </div>
+            </div>
+
+            <div class="bg-aurax-card border border-aurax-cardBorder rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <span class="text-aurax-neon text-xs font-bold uppercase tracking-wider">Xela Local</span>
+                    <h4 class="text-xl font-bold uppercase mt-1 mb-2">Volcán Santa María</h4>
+                    <p class="text-gray-400 text-xs mb-4">Ascenso al volcán referente de Quetzaltenango (3,772 msnm).</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-aurax-cardBorder pt-4">
+                    <span class="text-xl font-black text-white">Q150</span>
+                    <a href="https://wa.me/50254342015?text=Quiero%20reservar%20Santa%20Maria" target="_blank" class="px-4 py-2 rounded-lg bg-aurax-neon text-black font-bold text-xs">RESERVAR</a>
+                </div>
+            </div>
+
+            <div class="bg-aurax-card border border-aurax-cardBorder rounded-2xl p-6 flex flex-col justify-between">
+                <div>
+                    <span class="text-aurax-neon text-xs font-bold uppercase tracking-wider">Alta Altitud</span>
+                    <h4 class="text-xl font-bold uppercase mt-1 mb-2">Acatenango & Fuego</h4>
+                    <p class="text-gray-400 text-xs mb-4">Campamento de altura presenciando las erupciones del Volcán de Fuego.</p>
+                </div>
+                <div class="flex justify-between items-center border-t border-aurax-cardBorder pt-4">
+                    <span class="text-xl font-black text-white">Q450</span>
+                    <a href="https://wa.me/50254342015?text=Quiero%20reservar%20Acatenango" target="_blank" class="px-4 py-2 rounded-lg bg-aurax-neon text-black font-bold text-xs">RESERVAR</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GUARDIÁN MÍSTICO (LOBO NEÓN) -->
+    <section id="guardian" class="py-20 px-4 bg-aurax-card border-t border-aurax-cardBorder text-center">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-3xl md:text-5xl font-black uppercase mb-6">El Guardián Místico AURAX</h3>
+            <svg class="w-48 h-48 mx-auto mb-6" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M100 20 L130 70 L170 80 L140 120 L150 170 L100 140 L50 170 L60 120 L30 80 L70 70 Z" stroke="#00D2FE" stroke-width="3" fill="#070A0D" stroke-linejoin="round" filter="drop-shadow(0px 0px 10px #00D2FE)"/>
+                <circle cx="80" cy="85" r="5" fill="#00D2FE"/>
+                <circle cx="120" cy="85" r="5" fill="#00D2FE"/>
+            </svg>
+            <p class="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed">
+                El Lobo Neón sobre las cumbres volcánicas simboliza la lealtad de la manada, la fortaleza mental y el instinto de exploración que guía a nuestra comunidad en Guatemala.
+            </p>
+        </div>
+    </section>
+
+    <!-- 4. CONTACTO INMEDIATO Y REDES SOCIALES -->
+    <footer id="contacto" class="py-16 border-t border-aurax-cardBorder bg-black">
+        <div class="max-w-5xl mx-auto px-4 text-center space-y-8">
+            
+            <h3 class="text-2xl md:text-4xl font-black uppercase">¿Listo para conquistar tu propia cumbre?</h3>
+            <p class="text-gray-300 text-sm max-w-2xl mx-auto leading-relaxed">
+                La montaña te está esperando. Habla directamente con nuestro fundador para resolver dudas, cotizar expediciones privadas o asegurar tu lugar.
+            </p>
+
+            <!-- CONTACTO DIRECTO FUNDADOR -->
+            <div>
+                <a href="https://wa.me/50254342015?text=Hola,%20deseo%20comunicarme%20con%20el%20propietario/fundador%20de%20AURAX%20GT" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-aurax-neon text-black font-extrabold text-sm tracking-widest hover:bg-white transition-all shadow-lg shadow-aurax-neon/20">
+                    <i data-lucide="phone-call" class="w-5 h-5"></i>
+                    CONTACTAR AL PROPIETARIO (WA: 54342015)
+                </a>
+            </div>
+
+            <!-- REDES SOCIALES OFICIALES -->
+            <div class="pt-8 border-t border-aurax-cardBorder flex flex-wrap justify-center items-center gap-8 text-sm font-bold text-gray-300">
+                <a href="https://www.instagram.com/aurax_gt" target="_blank" class="flex items-center gap-2 hover:text-aurax-neon transition-colors">
+                    <i data-lucide="instagram" class="w-5 h-5 text-aurax-neon"></i> Instagram: @aurax_gt
+                </a>
+                <a href="https://www.tiktok.com/@aurax546" target="_blank" class="flex items-center gap-2 hover:text-aurax-neon transition-colors">
+                    <i data-lucide="video" class="w-5 h-5 text-aurax-neon"></i> TikTok: @aurax546
+                </a>
+                <a href="https://wa.me/50254342015" target="_blank" class="flex items-center gap-2 hover:text-aurax-neon transition-colors">
+                    <i data-lucide="message-square" class="w-5 h-5 text-aurax-neon"></i> WhatsApp Directo
+                </a>
+            </div>
+
+            <p class="text-xs text-gray-600 font-mono">
+                &copy; AURAX GT. "Que el ruido del mundo se convierta en silencio."
+            </p>
+        </div>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        lucide.createIcons();
+
+        function toggleAudio() {
+            const audio = document.getElementById('audio-ambiente');
+            const icon = document.getElementById('icon-audio');
+            const btn = document.getElementById('btn-audio');
+
+            if (audio.paused) {
+                audio.play();
+                icon.setAttribute('data-lucide', 'volume-2');
+                btn.classList.add('border-aurax-neon', 'text-aurax-neon');
+            } else {
+                audio.pause();
+                icon.setAttribute('data-lucide', 'volume-x');
+                btn.classList.remove('border-aurax-neon', 'text-aurax-neon');
+            }
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
